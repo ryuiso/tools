@@ -2,7 +2,11 @@ import csv
 import sys
 import math
 import random
+import copy
 
+"""
+python3 ./chooseImages.py hoge.csv
+"""
 GAZEX = 2
 GAZEY = 3
 TIME = 1
@@ -36,12 +40,15 @@ for row in dataReader:
         line.append(index +'.jpg '+ str(row[GAZEX]) + ' ' + str(row[GAZEY])+"\n")
 #print(imageList)
 #print ("\n")
-random.shuffle(line)
+line_shuffled = copy.copy(line)
+random.shuffle(line_shuffled)
 
 
 with open("train.txt", 'w') as f_out:
     for s in line:
         f_out.write(s)
         #print (i,end="")
-
+with open("trainshuffled.txt", 'w') as f_out:
+    for s in line_shuffled:
+        f_out.write(s)
 f.close()
